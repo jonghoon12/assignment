@@ -1,0 +1,26 @@
+login : root
+pw : centos
+[root@localhost ~]#groupadd -g 567 bssm
+[root@localhost ~]#useradd -g 567 mrchoi
+[root@localhost ~]#passwd kjune
+pw : centos
+retry : centos
+[root@localhost ~]#vi /etc/sudoers
+A 클릭 후 수정 가능 
+root     ALL=(ALL)     ALL
+mrchoi    ALL=(ALL)       ALL
+esc -> :wq! 빠져나오기
+[root@localhost ~]#exit
+login : mrchoi
+Pw : centos
+[mrchoi@localhost ~]$sudo systemctl restart network
+[mrchoi @localhost ~]$ip addr
+여기서 ens33이 아니라 enp0s3 이런식으로 보임 이제부터 이 이름 사용할것
+[mrchoi @localhost ~]$sudo vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+A 클릭 후 수정 가능
+ONBOOT=no -> yes
+esc -> :wq! 빠져나오기
+[mrchoi @localhost ~]$sudo systemctl restart network
+[mrchoi @localhost ~]$ip addr
+[mrchoi @localhost ~]$ping 8.8.8.8
+ctrl + c 로 나옴
